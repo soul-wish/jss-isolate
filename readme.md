@@ -9,10 +9,11 @@ Due to this reason styles in reusable UI components can be broken if all inherit
 
 This plugin protects styles from inheritance. It automatically creates a reset rule and applies it to every user's rule.
 
-[Demo](http://jsstyles.github.io/examples/index.html#plugin-jss-isolate) -
-[JSS](https://github.com/jsstyles/jss)
+[Demo](http://cssinjs.github.io/examples/index.html#plugin-jss-isolate) -
+[JSS](https://github.com/cssinjs/jss)
 
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/jsstyles/jss?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+![JSS logo](https://avatars1.githubusercontent.com/u/9503099?v=3&s=60)
+
 
 ## Usage example
 
