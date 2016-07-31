@@ -12,7 +12,7 @@ This plugin protects styles from inheritance. It automatically creates a reset r
 [Demo](http://cssinjs.github.io/examples/index.html#plugin-jss-isolate) -
 [JSS](https://github.com/cssinjs/jss)
 
-![JSS logo](https://avatars1.githubusercontent.com/u/9503099?v=3&s=60)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/cssinjs/lobby)
 
 
 ## Usage example
