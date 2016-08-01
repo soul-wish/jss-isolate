@@ -8,8 +8,9 @@ const debounce = (fn) => {
   }
 }
 
-const setSelector = debounce((rule, selectors) =>
-  rule.selector = selectors.join(',\n'))
+const setSelector = debounce((rule, selectors) => {
+  rule.selector = selectors.join(',\n')
+})
 
 export default function jssIsolate(options = {}) {
   let sheet
