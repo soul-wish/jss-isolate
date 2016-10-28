@@ -28,22 +28,22 @@ import isolate from 'jss-isolate'
 jss.setup(preset()).use(isolate())
 
 const sheet = jss.createStyleSheet({
-	// All atRules will be ignored in reset.
-	'@font-face': {
-		fontFamily: 'MyHelvetica',
-		src: 'local("Helvetica")',
-	},
-	title: {
-		fontSize: 20,
-		background: '#f00',
-	},
-	link: {
-		fontSize: 12,
-	},
-	article: {
+  // All atRules will be ignored in reset.
+  '@font-face': {
+    fontFamily: 'MyHelvetica',
+    src: 'local("Helvetica")',
+  },
+  title: {
+    fontSize: 20,
+    background: '#f00',
+  },
+  link: {
+    fontSize: 12,
+  },
+  article: {
     isolate: false, // This rule will be ignored in reset.
-		margin: '20px 10px 30px'
-	}
+    margin: '20px 10px 30px'
+  }
 })
 
 ```
