@@ -18,31 +18,31 @@ in general.
 
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/cssinjs/lobby)
 
-
 ## Usage example
 
 ```javascript
 import jss from 'jss'
-import jssIsolate from 'jss-isolate'
+import preset from 'jss-preset-default'
+import isolate from 'jss-isolate'
 
-jss.use(jssIsolate())
+jss.setup(preset()).use(isolate())
 
 const sheet = jss.createStyleSheet({
 	// All atRules will be ignored in reset.
 	'@font-face': {
-		'font-family': 'MyHelvetica',
+		fontFamily: 'MyHelvetica',
 		src: 'local("Helvetica")',
 	},
 	title: {
-		'font-size': '20px',
+		fontSize: 20,
 		background: '#f00',
 	},
 	link: {
-		'font-size': '12px',
+		fontSize: 12,
 	},
 	article: {
-		margin: '20px 10px 30px',
-		isolate: false // This rule will be ignored in reset.
+    isolate: false, // This rule will be ignored in reset.
+		margin: '20px 10px 30px'
 	}
 })
 
@@ -73,7 +73,7 @@ There are 2 ways to avoid isolation if you want to.
 If you want to pass additional properties that need to be resetted.
 
 ```javascript
-jss.use(jssIsolate({
+jss.use(isolate({
   reset: {
     boxSizing: 'border-box'
   }
@@ -83,6 +83,10 @@ jss.use(jssIsolate({
 ## Inheritable properties.
 
 A full list of currently resetted properties is [here](./src/reset.js).
+
+## Issues
+
+File a bug against [cssinjs/jss prefixed with \[jss-isolate\]](https://github.com/cssinjs/jss/issues/new?title=[jss-isolate]%20).
 
 ## Run tests
 
