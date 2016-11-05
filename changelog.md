@@ -1,3 +1,8 @@
+## 1.0.1 / 2016-11-05
+
+- update deps
+- migrate tests
+
 ## 1.0.0 / 2016-08-01
 
 - update to jss 5

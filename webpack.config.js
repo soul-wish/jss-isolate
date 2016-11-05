@@ -1,8 +1,8 @@
 'use strict'
 
-var webpack = require('webpack')
+const webpack = require('webpack')
 
-var plugins = [
+const plugins = [
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     __DEV__: process.env.NODE_ENV === 'development',
@@ -11,7 +11,11 @@ var plugins = [
 ]
 
 if (process.env.NODE_ENV === 'production') {
-  plugins.push(new webpack.optimize.UglifyJsPlugin())
+  plugins.push(new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false
+    }
+  }))
 }
 
 module.exports = {
@@ -19,7 +23,7 @@ module.exports = {
     library: 'jssIsolate',
     libraryTarget: 'umd'
   },
-  plugins: plugins,
+  plugins,
   module: {
     loaders: [
       {
@@ -28,5 +32,6 @@ module.exports = {
         exclude: /node_modules/
       }
     ]
-  }
+  },
+  devtool: 'source-map'
 }
