@@ -1,3 +1,7 @@
+## 1.0.2 / 2016-11-05
+
+- cleanup DOM after tests
+
 ## 1.0.1 / 2016-11-05
 
 - update deps

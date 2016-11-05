@@ -10,6 +10,10 @@ describe('jss-isolate', () => {
     jss = create().use(isolate())
   })
 
+  afterEach(() => {
+    jss.sheets.registry.forEach(sheet => sheet.detach())
+  })
+
   describe('reset sheet is not created if there is nothing to reset', () => {
     beforeEach(() => {
       jss.createStyleSheet()
@@ -171,15 +175,14 @@ describe('jss-isolate', () => {
   })
 
   describe('option "reset"', () => {
-    let jss2
     beforeEach((done) => {
-      jss2 = create().use(isolate({
+      jss = create().use(isolate({
         reset: {
           width: '1px'
         }
       }))
 
-      jss2.createStyleSheet({
+      jss.createStyleSheet({
         a: {
           color: 'blue'
         }
@@ -188,7 +191,7 @@ describe('jss-isolate', () => {
     })
 
     it('should add width prop to the reset rule', () => {
-      const resetRule = jss2.sheets.registry[0].getRule('reset')
+      const resetRule = jss.sheets.registry[0].getRule('reset')
       expect(resetRule.prop('width')).to.be('1px')
     })
   })
