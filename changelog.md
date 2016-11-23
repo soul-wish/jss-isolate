@@ -1,3 +1,7 @@
+## 1.0.3 / 2016-11-23
+
+- support jss.createRule(styles) without a sheet
+
 ## 1.0.2 / 2016-11-05
 
 - cleanup DOM after tests

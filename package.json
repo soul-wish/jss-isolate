@@ -1,7 +1,7 @@
 {
   "name": "jss-isolate",
   "description": "True rules isolation through automatic inheritable properties reset.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": {
     "name": "Maksim Koretskiy",
     "email": "mr.green.tv@gmail.com"

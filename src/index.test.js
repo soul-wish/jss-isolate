@@ -195,4 +195,22 @@ describe('jss-isolate', () => {
       expect(resetRule.prop('width')).to.be('1px')
     })
   })
+
+  describe('createRule()', () => {
+    it('should not create reset sheet', () => {
+      jss.createRule({
+        color: 'red'
+      })
+
+      expect(jss.sheets.registry.length).to.be(0)
+    })
+
+    it('should not throw', () => {
+      expect(() => {
+        jss.createRule({
+         color: 'red'
+        })
+      }).to.not.throwException()
+    })
+  })
 })

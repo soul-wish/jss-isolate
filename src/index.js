@@ -13,12 +13,13 @@ const setSelector = debounce((rule, selectors) => {
 })
 
 export default function jssIsolate(options = {}) {
-  let sheet
+  let sheet = null
   let resetRule
   const selectors = []
 
   return (rule) => {
     if (rule.type !== 'regular') return
+    if (!rule.options.sheet) return
     if (rule.options.sheet === sheet) return
     if (rule.options.sheet.options.isolate === false) return
     if (rule.options.parent && rule.options.parent.type === 'keyframe') return
