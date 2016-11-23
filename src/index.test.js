@@ -208,7 +208,7 @@ describe('jss-isolate', () => {
     it('should not throw', () => {
       expect(() => {
         jss.createRule({
-         color: 'red'
+          color: 'red'
         })
       }).to.not.throwException()
     })
