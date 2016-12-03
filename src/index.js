@@ -31,7 +31,10 @@ export default function jssIsolate(options = {}) {
     if (!sheet && rule.options.jss) {
       sheet = rule.options.jss.createStyleSheet({}, {
         link: true,
-        meta: 'jss-isolate'
+        meta: 'jss-isolate',
+        // Lets make it always the first one in sheets for testing
+        // and specificity.
+        index: -Infinity
       })
       const mergedReset = options.reset ? {...reset, ...options.reset} : reset
       resetRule = sheet.addRule('reset', mergedReset)
