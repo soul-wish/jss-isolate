@@ -1,6 +1,4 @@
-![JSS logo](https://avatars1.githubusercontent.com/u/9503099?v=3&s=60)
-
-## True rules isolation through automatic inheritable properties reset.
+# True rules isolation through automatic inheritable properties reset
 
 There is a category of css properties named 'inheritable'. It means that these properties apply to the child nodes from parent nodes. See [this article](
 https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_started/Cascading_and_inheritance) for more details.
