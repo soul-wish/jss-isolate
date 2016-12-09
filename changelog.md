@@ -1,3 +1,7 @@
+## 2.0.0 / 2016-12-09
+
+- update jss to 6.0
+
 ## 1.0.3 / 2016-11-23
 
 - support jss.createRule(styles) without a sheet
