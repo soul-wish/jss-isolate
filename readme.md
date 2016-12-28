@@ -11,21 +11,14 @@ Make sure you read [how to use
 plugins](https://github.com/cssinjs/jss/blob/master/docs/setup.md#setup-with-plugins)
 in general.
 
-[Demo](http://cssinjs.github.io/examples/index.html#plugin-jss-isolate) -
-[JSS](https://github.com/cssinjs/jss)
+[Demo](http://cssinjs.github.io/examples/index.html#plugin-jss-isolate)
 
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/cssinjs/lobby)
 
 ## Usage example
 
 ```javascript
-import jss from 'jss'
-import preset from 'jss-preset-default'
-import isolate from 'jss-isolate'
-
-jss.setup(preset()).use(isolate())
-
-const sheet = jss.createStyleSheet({
+const styles = {
   // All atRules will be ignored in reset.
   '@font-face': {
     fontFamily: 'MyHelvetica',
@@ -42,8 +35,7 @@ const sheet = jss.createStyleSheet({
     isolate: false, // This rule will be ignored in reset.
     margin: '20px 10px 30px'
   }
-})
-
+}
 ```
 
 ## Disable isolation locally.
@@ -53,20 +45,20 @@ There are 2 ways to avoid isolation if you want to.
 1. For a rule
 
   ```javascript
-  export default {
+  const styles = {
     button: {
       isolate: false
     }
   }
   ```
 
-2. For a style sheet
+1. For a Style Sheet
 
   ```javascript
   jss.createStyleSheet(styles, {isolate: false})
   ```
 
-## Additional reset.
+## Custom reset.
 
 If you want to pass additional properties that need to be resetted.
 
