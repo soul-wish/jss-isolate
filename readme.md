@@ -13,7 +13,7 @@ in general.
 
 [Demo](http://cssinjs.github.io/examples/index.html#plugin-jss-isolate)
 
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/cssinjs/lobby)
+[![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/cssinjs/lobby)
 
 ## Usage example
 
