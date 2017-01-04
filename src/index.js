@@ -22,7 +22,7 @@ export default function jssIsolate(options = {}) {
     if (!rule.options.sheet) return
     if (rule.options.sheet === sheet) return
     if (rule.options.sheet.options.isolate === false) return
-    if (rule.options.parent && rule.options.parent.type === 'keyframe') return
+    if (rule.options.parent && (rule.options.parent.type === 'keyframe' || rule.options.parent.type === 'conditional')) return
     if (rule.style && rule.style.isolate === false) {
       delete rule.style.isolate
       return
