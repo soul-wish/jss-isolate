@@ -1,3 +1,7 @@
+## 2.0.1 / 2016-12-09
+
+- fixed isolate: false with jss-nested (cssinjs/jss#401)
+
 ## 2.0.0 / 2016-12-09
 
 - update jss to 6.0
