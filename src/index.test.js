@@ -1,6 +1,7 @@
 import expect from 'expect.js'
 import {create, sheets} from 'jss'
 
+import nested from 'jss-nested'
 import isolate from './index'
 
 describe('jss-isolate', () => {
@@ -212,6 +213,49 @@ describe('jss-isolate', () => {
           color: 'red'
         })
       }).to.not.throwException()
+    })
+  })
+
+  describe('nested media queries with jss-nested', () => {
+    let sheet
+
+    beforeEach((done) => {
+      jss = create().use(isolate(), nested())
+      sheet = jss.createStyleSheet({
+        link: {
+          color: 'darksalmon',
+          '@media (min-width: 320px)': {
+            color: 'steelblue'
+          }
+        }
+      })
+      setTimeout(done)
+    })
+
+    it('should add selectors to the reset rule', () => {
+      const resetRule = sheets.registry[0].getRule('reset')
+      expect(resetRule.selector).to.contain(sheet.classes.link)
+    })
+  })
+
+  describe('nested media queries with jss-nested with isolate:false', () => {
+    beforeEach((done) => {
+      jss = create().use(isolate(), nested())
+      jss.createStyleSheet({
+        link: {
+          isolate: false,
+          color: 'darksalmon',
+          '@media (min-width: 320px)': {
+            color: 'steelblue'
+          }
+        }
+      })
+      setTimeout(done)
+    })
+
+    it('should not add selectors to the reset rule', () => {
+      const resetRule = sheets.registry[0].getRule('reset')
+      expect(resetRule).to.be(undefined)
     })
   })
 })
