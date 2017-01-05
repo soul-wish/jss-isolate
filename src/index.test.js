@@ -8,7 +8,7 @@ describe('jss-isolate', () => {
   let jss
 
   beforeEach(() => {
-    jss = create().use(isolate(), nested())
+    jss = create().use(isolate())
   })
 
   afterEach(() => {
@@ -220,6 +220,7 @@ describe('jss-isolate', () => {
     let sheet
 
     beforeEach((done) => {
+      jss = create().use(isolate(), nested())
       sheet = jss.createStyleSheet({
         link: {
           color: 'darksalmon',
@@ -239,6 +240,7 @@ describe('jss-isolate', () => {
 
   describe('nested media queries with jss-nested with isolate:false', () => {
     beforeEach((done) => {
+      jss = create().use(isolate(), nested())
       jss.createStyleSheet({
         link: {
           isolate: false,
