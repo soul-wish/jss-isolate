@@ -1,4 +1,4 @@
-## 2.0.1 / 2016-12-09
+## 2.0.1 / 2017-01-05
 
 - fixed isolate: false with jss-nested (cssinjs/jss#401)
 
