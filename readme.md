@@ -1,5 +1,7 @@
 # True rules isolation through automatic inheritable properties reset
 
+[![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/cssinjs/lobby)
+
 There is a category of css properties named 'inheritable'. It means that these properties apply to the child nodes from parent nodes. See [this article](
 https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_started/Cascading_and_inheritance) for more details.
 
@@ -10,10 +12,6 @@ This plugin protects styles from inheritance. It automatically creates a reset r
 Make sure you read [how to use
 plugins](https://github.com/cssinjs/jss/blob/master/docs/setup.md#setup-with-plugins)
 in general.
-
-[Demo](http://cssinjs.github.io/examples/index.html#plugin-jss-isolate)
-
-[![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/cssinjs/lobby)
 
 ## Usage example
 
@@ -37,6 +35,10 @@ const styles = {
   }
 }
 ```
+
+## Demo
+
+[Simple](http://cssinjs.github.io/examples/plugins/jss-isolate/simple/index.html)
 
 ## Disable isolation locally.
 
