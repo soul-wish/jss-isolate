@@ -13,23 +13,36 @@ const setSelector = debounce((rule, selectors) => {
 })
 
 export default function jssIsolate(options = {}) {
-  let sheet = null
+  let resetSheet = null
   let resetRule
   const selectors = []
 
-  return (rule) => {
-    if (rule.type !== 'regular') return
-    if (!rule.options.sheet) return
-    if (rule.options.sheet === sheet) return
-    if (rule.options.sheet.options.isolate === false) return
-    if (rule.options.parent && (rule.options.parent.type === 'keyframe' || rule.options.parent.type === 'conditional')) return
-    if (rule.style && rule.style.isolate === false) {
+  return (rule, sheet) => {
+    if (
+      rule.type !== 'regular' ||
+      !sheet ||
+      sheet === resetSheet ||
+      !rule.style
+    ) return
+
+    const {parent} = rule.options
+    if (parent && (parent.type === 'keyframe' || parent.type === 'conditional')) {
+      return
+    }
+
+    const {isolate} = rule.style
+
+    if (
+      (sheet.options.isolate === false && isolate !== true) ||
+      isolate === false
+    ) {
       delete rule.style.isolate
       return
     }
+
     // Create a separate style sheet once and use it for all rules.
-    if (!sheet && rule.options.jss) {
-      sheet = rule.options.jss.createStyleSheet({}, {
+    if (!resetSheet && rule.options.jss) {
+      resetSheet = rule.options.jss.createStyleSheet({}, {
         link: true,
         meta: 'jss-isolate',
         // Lets make it always the first one in sheets for testing
@@ -37,8 +50,8 @@ export default function jssIsolate(options = {}) {
         index: -Infinity
       })
       const mergedReset = options.reset ? {...reset, ...options.reset} : reset
-      resetRule = sheet.addRule('reset', mergedReset)
-      sheet.attach()
+      resetRule = resetSheet.addRule('reset', mergedReset)
+      resetSheet.attach()
     }
     if (selectors.indexOf(rule.selector) === -1) {
       selectors.push(rule.selector)

@@ -76,7 +76,7 @@ describe('jss-isolate', () => {
     })
   })
 
-  describe('works in multiple stylesheets', () => {
+  describe('works in multiple StyleSheets', () => {
     let sheet1
     let sheet2
 
@@ -101,7 +101,7 @@ describe('jss-isolate', () => {
     })
   })
 
-  describe('ignores rules if they are ignored in stylesheet options', () => {
+  describe('ignores rules if they are ignored in StyleSheet options', () => {
     let sheet1
     let sheet2
 
@@ -123,6 +123,25 @@ describe('jss-isolate', () => {
       const resetRule = sheets.registry[0].getRule('reset')
       expect(resetRule.selector).to.contain(sheet1.classes.link)
       expect(resetRule.selector).not.to.contain(sheet2.classes.linkItem)
+    })
+  })
+
+  describe('isolate rules if they have isolate: true even if StyleSheet options is isolate: false', () => {
+    let sheet
+
+    beforeEach((done) => {
+      sheet = jss.createStyleSheet({
+        link: {
+          isolate: true,
+          color: 'blue'
+        }
+      }, {isolate: false})
+      setTimeout(done)
+    })
+
+    it('should add selectors to the reset rule', () => {
+      const resetRule = sheets.registry[0].getRule('reset')
+      expect(resetRule.selector).to.contain(sheet.classes.link)
     })
   })
 
