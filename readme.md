@@ -40,7 +40,7 @@ const styles = {
 
 Option `isolate` can be a `boolean` or a `string`.
 The default value is `true`, but you can override it in 3 different layers.
-For string value see "Isolation by convention".
+For string value see [Isolation by convention](#isolation-by-convention).
 
 1. Globally for all StyleSheets:
 
@@ -115,7 +115,7 @@ const styles = {
 
 If you want to pass additional properties you want to reset. The same map is used for reseting inheritable and non-inheritable properties.
 
-For e.g. you can set `box-sizing` to be 'border-box' by default for ever isolated rule without messing around with greedy selectors like this: `* {box-sizgin: border-box}`.
+For e.g. you can set `box-sizing` to be `border-box` by default for every isolated rule without messing around with greedy selectors like this: `* {box-sizgin: border-box}`.
 
 ```javascript
 jss.use(isolate({
