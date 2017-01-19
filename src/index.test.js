@@ -236,7 +236,49 @@ describe('jss-isolate', () => {
     })
   })
 
-  describe('option "reset"', () => {
+  describe('option `reset="nonInherited"`', () => {
+    beforeEach((done) => {
+      jss = create().use(isolate({
+        reset: 'nonInherited'
+      }))
+
+      jss.createStyleSheet({
+        a: {
+          color: 'blue'
+        }
+      })
+      setTimeout(done)
+    })
+
+    it('should add width prop to the reset rule', () => {
+      const resetRule = sheets.registry[0].getRule('reset')
+      expect(resetRule.prop('clear')).to.be('none')
+      expect(resetRule.prop('color')).to.be('')
+    })
+  })
+
+  describe('option `reset="all"`', () => {
+    beforeEach((done) => {
+      jss = create().use(isolate({
+        reset: 'all'
+      }))
+
+      jss.createStyleSheet({
+        a: {
+          color: 'blue'
+        }
+      })
+      setTimeout(done)
+    })
+
+    it('should add width prop to the reset rule', () => {
+      const resetRule = sheets.registry[0].getRule('reset')
+      expect(resetRule.prop('color')).to.be('initial')
+      expect(resetRule.prop('clear')).to.be('none')
+    })
+  })
+
+  describe('option "reset={width}" with custom props', () => {
     beforeEach((done) => {
       jss = create().use(isolate({
         reset: {

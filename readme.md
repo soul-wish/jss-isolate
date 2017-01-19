@@ -111,11 +111,18 @@ const styles = {
 }
 ```
 
-## Extend default reset list.
+## Option `reset`.
 
-If you want to pass additional properties you want to reset. The same map is used for reseting inheritable and non-inheritable properties.
+Default value for `reset` option is `inherited`.
+Possible values are: "inherited", "nonInhertied", "all" and an `object`.
 
-For e.g. you can set `box-sizing` to be `border-box` by default for every isolated rule without messing around with greedy selectors like this: `* {box-sizgin: border-box}`.
+```javascript
+jss.use(isolate({
+  reset: 'all'
+}))
+```
+
+If you want to reset some properties additionally to `inherited` once, you can pass a map of props-values. For e.g. you can set `box-sizing` to be `border-box` by default for every isolated rule without messing around with greedy selectors like this: `* {box-sizing: border-box}`.
 
 ```javascript
 jss.use(isolate({

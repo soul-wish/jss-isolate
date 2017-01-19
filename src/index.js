@@ -1,4 +1,5 @@
-import inheritable from './inheritable'
+import inherited from './inherited'
+import nonInherited from './nonInherited'
 
 const debounce = (fn) => {
   let timeoutId
@@ -12,11 +13,26 @@ const setSelector = debounce((rule, selectors) => {
   rule.selector = selectors.join(',\n')
 })
 
+const getReset = (option = 'inherited') => {
+  switch (option) {
+    case 'inherited':
+      return inherited
+    case 'nonInherited':
+      return nonInherited
+    case 'all':
+      return {...inherited, ...nonInherited}
+    default:
+      // If option is an object, merge it with the `inherited` props.
+      return {...inherited, ...option}
+  }
+}
+
 export default function jssIsolate(options = {}) {
   const globalIsolate = options.isolate == null ? true : options.isolate
   const selectors = []
   let resetSheet = null
   let resetRule
+
 
   return (rule, sheet) => {
     if (
@@ -55,8 +71,7 @@ export default function jssIsolate(options = {}) {
         // and specificity.
         index: -Infinity
       })
-      const mergedReset = options.reset ? {...inheritable, ...options.reset} : inheritable
-      resetRule = resetSheet.addRule('reset', mergedReset)
+      resetRule = resetSheet.addRule('reset', getReset(options.reset))
       resetSheet.attach()
     }
     if (selectors.indexOf(rule.selector) === -1) {

@@ -1,10 +1,16 @@
+/* eslint-disable quote-props */
+/**
+ * List of inheritable properties.
+ *
+ * Borrowed from https://github.com/suitcss/preprocessor/blob/master/lib/encapsulation.js
+ */
 export default {
   'border-collapse': 'separate',
   'border-spacing': 0,
   'caption-side': 'top',
-  color: 'initial',
-  cursor: 'auto',
-  direction: 'initial',
+  'color': 'initial',
+  'cursor': 'auto',
+  'direction': 'initial',
   'empty-cells': 'show',
   'font-size-adjust': 'none',
   'font-family': 'initial',
@@ -13,15 +19,15 @@ export default {
   'font-stretch': 'normal',
   'font-variant': 'normal',
   'font-weight': 'normal',
-  font: 'initial',
+  'font': 'initial',
   'letter-spacing': 'normal',
   'line-height': 'normal',
   'list-style-image': 'none',
   'list-style-position': 'outside',
   'list-style-type': 'disc',
   'list-style': 'initial',
-  orphans: 2,
-  quotes: 'initial',
+  'orphans': 2,
+  'quotes': 'initial',
   'tab-size': 8,
   'text-align': 'initial',
   'text-align-last': 'auto',
@@ -30,9 +36,9 @@ export default {
   'text-justify': 'auto',
   'text-shadow': 'none',
   'text-transform': 'none',
-  visibility: 'visible',
+  'visibility': 'visible',
   'white-space': 'normal',
-  widows: 2,
+  'widows': 2,
   'word-break': 'normal',
   'word-spacing': 'normal',
   'word-wrap': 'normal'
