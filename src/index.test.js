@@ -145,6 +145,28 @@ describe('jss-isolate', () => {
     })
   })
 
+  describe('isolate option as a string', () => {
+    let sheet
+
+    beforeEach((done) => {
+      sheet = jss.createStyleSheet({
+        root: {
+          color: 'blue'
+        },
+        a: {
+          color: 'red'
+        }
+      }, {isolate: 'root'})
+      setTimeout(done)
+    })
+
+    it('should only isolate rules with matching name', () => {
+      const resetRule = sheets.registry[0].getRule('reset')
+      expect(resetRule.selector).to.contain(sheet.classes.root)
+      expect(resetRule.selector).not.to.contain(sheet.classes.a)
+    })
+  })
+
   describe('ignore rules if property isolate is set to false', () => {
     let sheet
 

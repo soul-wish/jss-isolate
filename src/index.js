@@ -30,13 +30,22 @@ export default function jssIsolate(options = {}) {
       return
     }
 
-    const {isolate} = rule.style
+    const isolateProp = rule.style.isolate
+    const isolateOption = sheet.options.isolate
+
+    if (isolateProp != null) delete rule.style.isolate
 
     if (
-      (sheet.options.isolate === false && isolate !== true) ||
-      isolate === false
+      // Style prop `{isolate: true}` overrides the option.
+      (isolateOption === false && isolateProp !== true) ||
+      isolateProp === false
     ) {
-      delete rule.style.isolate
+      return
+    }
+
+    // Option `isolate` may be for e.g. `{isolate: 'root'}`.
+    // In this case it must match the rule name in order to isolate it.
+    if (typeof isolateOption === 'string' && isolateOption !== rule.name) {
       return
     }
 
