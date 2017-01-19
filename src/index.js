@@ -1,4 +1,4 @@
-import reset from './reset'
+import inheritable from './inheritable'
 
 const debounce = (fn) => {
   let timeoutId
@@ -55,7 +55,7 @@ export default function jssIsolate(options = {}) {
         // and specificity.
         index: -Infinity
       })
-      const mergedReset = options.reset ? {...reset, ...options.reset} : reset
+      const mergedReset = options.reset ? {...inheritable, ...options.reset} : inheritable
       resetRule = resetSheet.addRule('reset', mergedReset)
       resetSheet.attach()
     }

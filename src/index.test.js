@@ -72,7 +72,7 @@ describe('jss-isolate', () => {
     it('should have expected reset props', () => {
       const resetRule = sheets.registry[0].getRule('reset')
       expect(resetRule.prop('border-collapse')).to.be('separate')
-      expect(resetRule.prop('font-family')).to.be('serif')
+      expect(resetRule.prop('font-family')).to.be('initial')
     })
   })
 
@@ -102,13 +102,12 @@ describe('jss-isolate', () => {
   })
 
   describe('global option "isolate"', () => {
-    let sheet
     beforeEach((done) => {
       jss = create().use(isolate({
         isolate: false
       }))
 
-      sheet = jss.createStyleSheet({
+      jss.createStyleSheet({
         a: {
           color: 'blue'
         }
