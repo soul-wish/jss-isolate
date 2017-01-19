@@ -36,33 +36,86 @@ const styles = {
 }
 ```
 
-## Demo
+## Option `isolate`.
 
-[Simple](http://cssinjs.github.io/examples/plugins/jss-isolate/simple/index.html)
+Option `isolate` can be a `boolean` or a `string`.
+The default value is `true`, but you can override it in 3 different layers.
+For string value see "Isolation by convention".
 
-## Disable isolation locally.
+1. Globally for all StyleSheets:
 
-There are 2 ways to avoid isolation if you want to.
+    ```javascript
+    jss.use(isolate({
+      isolate: false
+    }))
 
-1. For a rule
+    const styles = {
+      // Isolated.
+      button: {
+        isolate: true,
+        color: 'red'
+      },
+      // Not isolated.
+      a: {
+        color: 'green'
+      }
+    }
+    ```
+1. For a specific StyleSheet:
+
+    ```javascript
+    const styles = {
+      // Isolated.
+      root: {
+        isolate: true,
+        color: 'red'
+      },
+      // Not isolated.
+      a: {
+        color: 'green'
+      }
+    }
+
+    jss.createStyleSheet(styles, {isolate: false})
+    ```
+1. For a specific Rule:
 
   ```javascript
   const styles = {
     button: {
-      isolate: false
+      isolate: false,
+      color: 'red'
     }
   }
   ```
 
-1. For a Style Sheet
+## Isolation by convention.
 
-  ```javascript
-  jss.createStyleSheet(styles, {isolate: false})
-  ```
+You can assign any string to the `isolate` option. It will be used to match a rule name to isolate. All other rules will remain unisolated.
 
-## Custom reset.
+```javascript
+jss.use(isolate({
+  // Will match rule names `root` in all StyleSheets.
+  isolate: 'root'
+}))
 
-If you want to pass additional properties that need to be resetted.
+const styles = {
+  // Isolated.
+  root: {
+    color: 'red'
+  },
+  // Not isolated.
+  a: {
+    color: 'green'
+  }
+}
+```
+
+## Extend default reset list.
+
+If you want to pass additional properties you want to reset. The same map is used for reseting inheritable and non-inheritable properties.
+
+For e.g. you can set `box-sizing` to be 'border-box' by default for ever isolated rule without messing around with greedy selectors like this: `* {box-sizgin: border-box}`.
 
 ```javascript
 jss.use(isolate({
@@ -71,6 +124,10 @@ jss.use(isolate({
   }
 }))
 ```
+
+## Demo
+
+[Simple](http://cssinjs.github.io/examples/plugins/jss-isolate/simple/index.html)
 
 ## Inheritable properties.
 

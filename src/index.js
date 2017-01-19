@@ -13,9 +13,10 @@ const setSelector = debounce((rule, selectors) => {
 })
 
 export default function jssIsolate(options = {}) {
+  const globalIsolate = options.isolate == null ? true : options.isolate
+  const selectors = []
   let resetSheet = null
   let resetRule
-  const selectors = []
 
   return (rule, sheet) => {
     if (
@@ -30,22 +31,18 @@ export default function jssIsolate(options = {}) {
       return
     }
 
-    const isolateProp = rule.style.isolate
-    const isolateOption = sheet.options.isolate
-
-    if (isolateProp != null) delete rule.style.isolate
-
-    if (
-      // Style prop `{isolate: true}` overrides the option.
-      (isolateOption === false && isolateProp !== true) ||
-      isolateProp === false
-    ) {
-      return
+    let isolate = globalIsolate
+    if (sheet.options.isolate != null) isolate = sheet.options.isolate
+    if (rule.style.isolate != null) {
+      isolate = rule.style.isolate
+      delete rule.style.isolate
     }
+
+    if (isolate === false) return
 
     // Option `isolate` may be for e.g. `{isolate: 'root'}`.
     // In this case it must match the rule name in order to isolate it.
-    if (typeof isolateOption === 'string' && isolateOption !== rule.name) {
+    if (isolate !== rule.name && typeof isolate === 'string') {
       return
     }
 

@@ -101,6 +101,26 @@ describe('jss-isolate', () => {
     })
   })
 
+  describe('global option "isolate"', () => {
+    let sheet
+    beforeEach((done) => {
+      jss = create().use(isolate({
+        isolate: false
+      }))
+
+      sheet = jss.createStyleSheet({
+        a: {
+          color: 'blue'
+        }
+      })
+      setTimeout(done)
+    })
+
+    it('should use global option', () => {
+      expect(sheets.registry[0].getRule('reset')).to.be(undefined)
+    })
+  })
+
   describe('ignores rules if they are ignored in StyleSheet options', () => {
     let sheet1
     let sheet2

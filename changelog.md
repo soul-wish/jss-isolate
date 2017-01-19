@@ -1,3 +1,9 @@
+## 2.1.0 / 2017-01-19
+
+- `jss.use(isolate({isolate: false})` - will not isolate any rule by default, to isolate you will need to set isolate: true on a sheet or on the rule.
+
+- `jss.use(isolate({isolate: 'root'})` - will isolate automatically only rules with name "root" or any other name you want to use. This allows children in this component to inherit inheritable values, but components which have own roots will be isolated, so that inheritance doesn't spread to all children.
+
 ## 2.0.1 / 2017-01-05
 
 - fixed isolate: false with jss-nested (cssinjs/jss#401)
