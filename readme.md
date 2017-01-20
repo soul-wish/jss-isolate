@@ -36,7 +36,7 @@ const styles = {
 }
 ```
 
-## Option `isolate`.
+## Option `isolate`
 
 Option `isolate` can be a `boolean` or a `string`.
 The default value is `true`, but you can override it in 3 different layers.
@@ -89,7 +89,7 @@ For string value see [Isolation by convention](#isolation-by-convention).
   }
   ```
 
-## Isolation by convention.
+## Isolation by convention
 
 You can assign any string to the `isolate` option. It will be used to match a rule name to isolate. All other rules will remain unisolated.
 
@@ -111,7 +111,7 @@ const styles = {
 }
 ```
 
-## Option `reset`.
+## Option `reset`
 
 Default value for `reset` option is `inherited`.
 Possible values are: "inherited", "nonInhertied", "all" and an `object`.
