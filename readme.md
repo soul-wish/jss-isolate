@@ -1,13 +1,15 @@
-# True rules isolation through automatic inheritable properties reset
+# True rules isolation through automatic properties reset
 
 [![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/cssinjs/lobby)
 
-There is a category of css properties named 'inheritable'. It means that these properties apply to the child nodes from parent nodes. See [this article](
+Some of the CSS properties are inheritable. It means that these properties apply to the child nodes from parent nodes. See [this article](
 https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_started/Cascading_and_inheritance) for more details.
 
 Due to this reason styles in reusable UI components can be broken if all inheritable properties were not defined explicitly for each element. It can cost You extra efforts to build strong isolation in a component.
 
-This plugin protects styles from inheritance. It automatically creates a reset rule and applies it to every user's rule.
+This plugin protects styles from inheritance. It automatically creates a reset rule and applies to every user's rule.
+
+Optionally you can also reset non-inherited properties, which would lead to even stronger isolation, as a protection against "greedy" selectors.
 
 Make sure you read [how to use
 plugins](https://github.com/cssinjs/jss/blob/master/docs/setup.md#setup-with-plugins)
