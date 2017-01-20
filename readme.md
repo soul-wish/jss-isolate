@@ -136,9 +136,9 @@ jss.use(isolate({
 
 [Simple](http://cssinjs.github.io/examples/plugins/jss-isolate/simple/index.html)
 
-## Inheritable properties.
+## Reseted properties
 
-A full list of currently resetted properties is [here](./src/reset.js).
+Here are all [inherited](./src/inherited.js) and all [non-inherited](./src/nonInherited.js) properties we reset.
 
 ## Issues
 
