@@ -2,10 +2,14 @@ import inherited from './inherited'
 import nonInherited from './nonInherited'
 
 const debounce = (fn) => {
-  let timeoutId
+  let pending = false
   return (...args) => {
-    clearTimeout(timeoutId)
-    timeoutId = setTimeout(() => fn(...args))
+    if (pending) return
+    pending = true
+    setTimeout(() => {
+      fn(...args)
+      pending = false
+    })
   }
 }
 
