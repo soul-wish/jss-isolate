@@ -1,5 +1,4 @@
 import inherited from './inherited'
-import nonInherited from './nonInherited'
 
 const debounce = (fn) => {
   let pending = false
@@ -21,10 +20,6 @@ const getReset = (option = 'inherited') => {
   switch (option) {
     case 'inherited':
       return inherited
-    case 'nonInherited':
-      return nonInherited
-    case 'all':
-      return {...inherited, ...nonInherited}
     default:
       // If option is an object, merge it with the `inherited` props.
       return {...inherited, ...option}

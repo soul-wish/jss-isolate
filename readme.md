@@ -116,13 +116,6 @@ const styles = {
 ## Option `reset`
 
 Default value for `reset` option is `inherited`.
-Possible values are: "inherited", "nonInhertied", "all" and an `object`.
-
-```javascript
-jss.use(isolate({
-  reset: 'all'
-}))
-```
 
 If you want to reset some properties additionally to `inherited` once, you can pass a map of props-values. For e.g. you can set `box-sizing` to be `border-box` by default for every isolated rule without messing around with greedy selectors like this: `* {box-sizing: border-box}`.
 
