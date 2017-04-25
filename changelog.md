@@ -1,3 +1,9 @@
+## 3.0.0 / 2017-04-25
+
+- support JSS 7
+- improve debounce performance
+- added new values for option `isolate`
+
 ## 2.1.0 / 2017-01-19
 
 - `jss.use(isolate({isolate: false})` - will not isolate any rule by default, to isolate you will need to set isolate: true on a sheet or on the rule.
