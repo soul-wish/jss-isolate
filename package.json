@@ -11,7 +11,7 @@
     "url": "git@github.com:cssinjs/jss-isolate.git"
   },
   "keywords": [
-    "cssinnjs",
+    "cssinjs",
     "css-in-js",
     "css in js",
     "jss",
@@ -35,7 +35,7 @@
     "lint:staged": "lint-staged",
     "test": "cross-env NODE_ENV=test karma start --single-run ",
     "test:watch": "cross-env NODE_ENV=test karma start",
-    "prepublish": "npm run all"
+    "prepublishOnly": "npm run all"
   },
   "license": "MIT",
   "main": "lib/index.js",
@@ -57,8 +57,8 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.5.0",
     "expect.js": "^0.3.1",
-    "jss": "^6.0.0",
-    "jss-nested": "^3.0.1",
+    "jss": "^8.0.0",
+    "jss-nested": "^4.0.0",
     "karma": "^1.1.1",
     "karma-benchmark": "^0.6.0",
     "karma-benchmark-reporter": "^0.1.1",
@@ -76,7 +76,7 @@
     "webpack": "^1.13.1"
   },
   "peerDependencies": {
-    "jss": "^7.0.0"
+    "jss": "^8.0.0"
   },
   "lint-staged": {
     "./src/*.js": [
