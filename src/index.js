@@ -35,14 +35,14 @@ export default function jssIsolate(options = {}) {
 
   function onProcessRule(rule, sheet) {
     if (
-      rule.type !== 'regular' ||
+      rule.type !== 'style' ||
       !sheet ||
       sheet === resetSheet ||
       !rule.style
     ) return
 
     const {parent} = rule.options
-    if (parent && (parent.type === 'keyframe' || parent.type === 'conditional')) {
+    if (parent && (parent.type === 'keyframes' || parent.type === 'conditional')) {
       return
     }
 
@@ -57,7 +57,7 @@ export default function jssIsolate(options = {}) {
 
     // Option `isolate` may be for e.g. `{isolate: 'root'}`.
     // In this case it must match the rule name in order to isolate it.
-    if (isolate !== rule.name && typeof isolate === 'string') {
+    if (isolate !== rule.key && typeof isolate === 'string') {
       return
     }
 
