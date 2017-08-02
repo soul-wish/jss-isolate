@@ -54,7 +54,7 @@ const shouldIsolate = (rule, sheet, options) => {
  */
 const createDebounced = (fn, delay = 3) => {
   let time = Date.now()
-  return (rule, selectors) => {
+  return () => {
     const now = Date.now()
     if (now - time < delay) return false
     time = now
