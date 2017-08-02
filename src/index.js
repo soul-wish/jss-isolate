@@ -1,22 +1,14 @@
 import inherited from './inherited'
 
-const debounce = (fn) => {
-  let pending = false
-  return (...args) => {
-    if (pending) return
-    pending = true
-    setTimeout(() => {
-      fn(...args)
-      pending = false
-    })
-  }
+const resetSheetOptions = {
+  meta: 'jss-isolate',
+  // Lets make it always the first one in sheets for testing
+  // and specificity.
+  index: -Infinity,
+  link: true
 }
 
-const setSelector = debounce((rule, selectors) => {
-  rule.selector = selectors.join(',\n')
-})
-
-const getReset = (option = 'inherited') => {
+const getStyle = (option = 'inherited') => {
   switch (option) {
     case 'inherited':
       return inherited
@@ -26,58 +18,95 @@ const getReset = (option = 'inherited') => {
   }
 }
 
+const ignoreParents = {
+  keyframes: true,
+  conditional: true
+}
+
+const shouldIsolate = (rule, sheet, options) => {
+  const {parent} = rule.options
+
+  if (parent && ignoreParents[parent.type]) {
+    return false
+  }
+
+  let isolate = options.isolate == null ? true : options.isolate
+  if (sheet.options.isolate != null) isolate = sheet.options.isolate
+  if (rule.style.isolate != null) {
+    isolate = rule.style.isolate
+    delete rule.style.isolate
+  }
+
+  // Option `isolate` may be for e.g. `{isolate: 'root'}`.
+  // In this case it must match the rule name in order to isolate it.
+  if (typeof isolate === 'string') {
+    return isolate === rule.key
+  }
+
+  return isolate
+}
+
+/**
+ * Performance optimized debounce without using setTimeout.
+ * Returns a function which:
+ * - will execute the passed fn not more than once per delay
+ * - will not execute the passed fn if last try was within delay
+ */
+const createDebounced = (fn, delay = 3) => {
+  let time = Date.now()
+  return (rule, selectors) => {
+    const now = Date.now()
+    if (now - time < delay) return false
+    time = now
+    fn()
+    return true
+  }
+}
+
 export default function jssIsolate(options = {}) {
-  const globalIsolate = options.isolate == null ? true : options.isolate
+  let setSelectorDone = false
   const selectors = []
-  let resetSheet = null
+  let resetSheet
   let resetRule
 
+  const setSelector = () => {
+    resetRule.selector = selectors.join(',\n')
+  }
+
+  const setSelectorDebounced = createDebounced(setSelector)
 
   function onProcessRule(rule, sheet) {
     if (
-      rule.type !== 'style' ||
       !sheet ||
       sheet === resetSheet ||
-      !rule.style
+      rule.type !== 'style'
     ) return
 
-    const {parent} = rule.options
-    if (parent && (parent.type === 'keyframes' || parent.type === 'conditional')) {
-      return
-    }
+    if (!shouldIsolate(rule, sheet, options)) return
 
-    let isolate = globalIsolate
-    if (sheet.options.isolate != null) isolate = sheet.options.isolate
-    if (rule.style.isolate != null) {
-      isolate = rule.style.isolate
-      delete rule.style.isolate
-    }
-
-    if (isolate === false) return
-
-    // Option `isolate` may be for e.g. `{isolate: 'root'}`.
-    // In this case it must match the rule name in order to isolate it.
-    if (isolate !== rule.key && typeof isolate === 'string') {
-      return
-    }
-
-    // Create a separate style sheet once and use it for all rules.
-    if (!resetSheet && rule.options.jss) {
-      resetSheet = rule.options.jss.createStyleSheet({}, {
-        link: true,
-        meta: 'jss-isolate',
-        // Lets make it always the first one in sheets for testing
-        // and specificity.
-        index: -Infinity
-      })
-      resetRule = resetSheet.addRule('reset', getReset(options.reset))
+    // Create a reset Style Sheet once and use it for all rules.
+    if (!resetRule) {
+      resetSheet = rule.options.jss.createStyleSheet(null, resetSheetOptions)
+      resetRule = resetSheet.addRule('reset', getStyle(options.reset))
       resetSheet.attach()
     }
-    if (selectors.indexOf(rule.selector) === -1) {
-      selectors.push(rule.selector)
+
+    // Add reset rule class name to the classes map of users Style Sheet.
+    const {selector} = rule
+    if (selectors.indexOf(selector) === -1) {
+      selectors.push(selector)
+      setSelectorDone = setSelectorDebounced()
     }
-    setSelector(resetRule, selectors)
   }
 
-  return {onProcessRule}
+  // We make sure selector is set, because `debaunceMaybe` will not execute
+  // the fn if called within delay.
+  function onProcessSheet() {
+    if (!setSelectorDone && selectors.length) setSelector()
+  }
+
+  return {
+    onProcessRule,
+    onProcessSheet
+  }
 }
