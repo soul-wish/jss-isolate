@@ -1,4 +1,4 @@
-## 4.0.1 / 2017-08-02
+## 5.0.0-pre / 2017-08-17
 
 - Make updating selector synchronous.
 - Added lockfile.
