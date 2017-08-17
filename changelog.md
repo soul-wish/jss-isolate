@@ -1,3 +1,7 @@
+## 5.0.0-pre.1 / 2017-08-17
+
+- Require ^jss@9.0.0-pre
+
 ## 5.0.0-pre / 2017-08-17
 
 - Make updating selector synchronous.
