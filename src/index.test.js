@@ -39,7 +39,7 @@ describe('jss-isolate', () => {
           '30%': {top: 30},
           '60%, 70%': {top: 80}
         },
-        '@supports ( display: flexbox )': {},
+        '@supports ( display: flexbox )': {}
       })
     })
 
@@ -51,7 +51,7 @@ describe('jss-isolate', () => {
   describe('works with classes', () => {
     let sheet
 
-    beforeEach(() => {
+    beforeEach((done) => {
       sheet = jss.createStyleSheet({
         link: {
           color: 'red',
@@ -60,6 +60,7 @@ describe('jss-isolate', () => {
           color: 'blue'
         }
       })
+      setTimeout(done)
     })
 
     it('should add selectors to the reset rule', () => {
@@ -79,7 +80,7 @@ describe('jss-isolate', () => {
     let sheet1
     let sheet2
 
-    beforeEach(() => {
+    beforeEach((done) => {
       sheet1 = jss.createStyleSheet({
         link: {
           color: 'red'
@@ -90,6 +91,7 @@ describe('jss-isolate', () => {
           color: 'blue'
         }
       })
+      setTimeout(done)
     })
 
     it('should add selectors to the reset rule', () => {
@@ -100,7 +102,7 @@ describe('jss-isolate', () => {
   })
 
   describe('global option "isolate"', () => {
-    beforeEach(() => {
+    beforeEach((done) => {
       jss = create().use(isolate({
         isolate: false
       }))
@@ -110,6 +112,7 @@ describe('jss-isolate', () => {
           color: 'blue'
         }
       })
+      setTimeout(done)
     })
 
     it('should use global option', () => {
@@ -121,7 +124,7 @@ describe('jss-isolate', () => {
     let sheet1
     let sheet2
 
-    beforeEach(() => {
+    beforeEach((done) => {
       sheet1 = jss.createStyleSheet({
         link: {
           color: 'red'
@@ -132,6 +135,7 @@ describe('jss-isolate', () => {
           color: 'blue'
         }
       }, {isolate: false})
+      setTimeout(done)
     })
 
     it('should not add selectors to the reset rule', () => {
@@ -144,13 +148,14 @@ describe('jss-isolate', () => {
   describe('isolate rules if they have isolate: true even if StyleSheet options is isolate: false', () => {
     let sheet
 
-    beforeEach(() => {
+    beforeEach((done) => {
       sheet = jss.createStyleSheet({
         link: {
           isolate: true,
           color: 'blue'
         }
       }, {isolate: false})
+      setTimeout(done)
     })
 
     it('should add selectors to the reset rule', () => {
@@ -162,7 +167,7 @@ describe('jss-isolate', () => {
   describe('isolate option as a string', () => {
     let sheet
 
-    beforeEach(() => {
+    beforeEach((done) => {
       sheet = jss.createStyleSheet({
         root: {
           color: 'blue'
@@ -171,6 +176,7 @@ describe('jss-isolate', () => {
           color: 'red'
         }
       }, {isolate: 'root'})
+      setTimeout(done)
     })
 
     it('should only isolate rules with matching name', () => {
@@ -183,7 +189,7 @@ describe('jss-isolate', () => {
   describe('ignore rules if property isolate is set to false', () => {
     let sheet
 
-    beforeEach(() => {
+    beforeEach((done) => {
       sheet = jss.createStyleSheet({
         link: {
           color: 'red'
@@ -193,6 +199,7 @@ describe('jss-isolate', () => {
           isolate: false
         }
       })
+      setTimeout(done)
     })
 
     it('should add selectors to the reset rule', () => {
@@ -209,7 +216,7 @@ describe('jss-isolate', () => {
   describe('don\'t duplicate selectors', () => {
     let sheet
 
-    beforeEach(() => {
+    beforeEach((done) => {
       sheet = jss.createStyleSheet({
         link: {
           color: 'blue'
@@ -220,6 +227,7 @@ describe('jss-isolate', () => {
           }
         }
       })
+      setTimeout(done)
     })
 
     it('should add selectors to the reset rule', () => {
@@ -229,7 +237,7 @@ describe('jss-isolate', () => {
   })
 
   describe('option "reset={width}" with custom props', () => {
-    beforeEach(() => {
+    beforeEach((done) => {
       jss = create().use(isolate({
         reset: {
           width: '1px'
@@ -241,6 +249,7 @@ describe('jss-isolate', () => {
           color: 'blue'
         }
       })
+      setTimeout(done)
     })
 
     it('should add width prop to the reset rule', () => {
@@ -270,7 +279,7 @@ describe('jss-isolate', () => {
   describe('nested media queries with jss-nested', () => {
     let sheet
 
-    beforeEach(() => {
+    beforeEach((done) => {
       jss = create().use(isolate(), nested())
       sheet = jss.createStyleSheet({
         link: {
@@ -280,6 +289,7 @@ describe('jss-isolate', () => {
           }
         }
       })
+      setTimeout(done)
     })
 
     it('should add selectors to the reset rule', () => {
@@ -289,7 +299,7 @@ describe('jss-isolate', () => {
   })
 
   describe('nested media queries with jss-nested with isolate:false', () => {
-    beforeEach(() => {
+    beforeEach((done) => {
       jss = create().use(isolate(), nested())
       jss.createStyleSheet({
         link: {
@@ -300,6 +310,7 @@ describe('jss-isolate', () => {
           }
         }
       })
+      setTimeout(done)
     })
 
     it('should not add selectors to the reset rule', () => {

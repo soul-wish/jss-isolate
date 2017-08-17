@@ -1,8 +1,3 @@
-## 4.0.1 / 2017-08-02
-
-- Make updating selector synchronous.
-- Added lockfile.
-
 ## 4.0.0 / 2017-06-20
 
 - support JSS 8
