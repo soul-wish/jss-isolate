@@ -28,6 +28,8 @@ const getStyle = (option = 'inherited') => {
     // Option is a style object, use inherited initials by default.
     return {...inheritedInitials, ...option}
   }
+
+  return inheritedInitials
 }
 
 const ignoreParents = {
