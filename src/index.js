@@ -1,4 +1,5 @@
-import inherited from './inherited'
+import inheritedInitials from 'css-initials/inherited'
+import allInitials from 'css-initials/all'
 
 const resetSheetOptions = {
   meta: 'jss-isolate',
@@ -8,13 +9,24 @@ const resetSheetOptions = {
   link: true
 }
 
+const initialsMap = {
+  inherited: inheritedInitials,
+  all: allInitials
+}
+
 const getStyle = (option = 'inherited') => {
-  switch (option) {
-    case 'inherited':
-      return inherited
-    default:
-      // If option is an object, merge it with the `inherited` props.
-      return {...inherited, ...option}
+  // Option is either "inherited" or "all".
+  if (typeof option === 'string') return initialsMap[option]
+
+  if (typeof option === 'object') {
+    // Option is ["all/inherited", {...style}]
+    if (Array.isArray(option)) {
+      const type = option[0]
+      const style = option[1]
+      return {...initialsMap[type], ...style}
+    }
+    // Option is a style object, use inherited initials by default.
+    return {...inheritedInitials, ...option}
   }
 }
 

@@ -127,6 +127,24 @@ jss.use(isolate({
 }))
 ```
 
+If you want to reset all properties, not just inherited, use `{reset: 'all'}`.
+
+```javascript
+jss.use(isolate({
+  reset: 'all'
+}))
+```
+
+If you want to reset all properties and extend the reset with your props:
+
+```javascript
+jss.use(isolate({
+  reset: ['all', {
+    boxSizing: 'border-box'
+  }]
+}))
+```
+
 ## Demo
 
 [Simple](http://cssinjs.github.io/examples/plugins/jss-isolate/simple/index.html)

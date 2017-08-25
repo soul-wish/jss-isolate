@@ -84,5 +84,8 @@
       "git add"
     ]
   },
-  "pre-commit": "lint:staged"
+  "pre-commit": "lint:staged",
+  "dependencies": {
+    "css-initials": "^0.1.0"
+  }
 }
