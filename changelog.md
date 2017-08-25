@@ -1,3 +1,8 @@
+## 5.0.0-pre.2 / 2017-08-25
+
+- Use css-initials package
+- Add `reset: 'all'` option
+
 ## 5.0.0-pre.1 / 2017-08-17
 
 - Require ^jss@9.0.0-pre
