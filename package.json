@@ -1,7 +1,7 @@
 {
   "name": "jss-isolate",
   "description": "True rules isolation through automatic properties reset.",
-  "version": "4.0.2",
+  "version": "5.0.0",
   "author": {
     "name": "Maksim Koretskiy",
     "email": "mr.green.tv@gmail.com"
@@ -57,8 +57,8 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.5.0",
     "expect.js": "^0.3.1",
-    "jss": "^8.0.0",
-    "jss-nested": "^4.0.0",
+    "jss": "^9.0.0",
+    "jss-nested": "^6.0.0",
     "karma": "^1.1.1",
     "karma-benchmark": "^0.6.0",
     "karma-benchmark-reporter": "^0.1.1",
@@ -76,7 +76,7 @@
     "webpack": "^1.13.1"
   },
   "peerDependencies": {
-    "jss": "^8.0.0"
+    "jss": "^9.0.0"
   },
   "lint-staged": {
     "./src/*.js": [
@@ -84,5 +84,8 @@
       "git add"
     ]
   },
-  "pre-commit": "lint:staged"
+  "pre-commit": "lint:staged",
+  "dependencies": {
+    "css-initials": "^0.1.0"
+  }
 }

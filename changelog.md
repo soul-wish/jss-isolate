@@ -1,3 +1,25 @@
+## 5.0.0 / 2017-09-30
+
+- Support JSS 9
+- Use css-initials package
+- Add `reset: 'all'` option
+- Make updating selector synchronous.
+- Added lockfile.
+
+## 5.0.0-pre.2 / 2017-08-25
+
+- Use css-initials package
+- Add `reset: 'all'` option
+
+## 5.0.0-pre.1 / 2017-08-17
+
+- Require ^jss@9.0.0-pre
+
+## 5.0.0-pre / 2017-08-17
+
+- Make updating selector synchronous.
+- Added lockfile.
+
 ## 4.0.2 / 2017-08-17
 
 - Reverted changes introduced by 4.0.1 release because they are not compatible with JSS 8. They will be republished in v5.
