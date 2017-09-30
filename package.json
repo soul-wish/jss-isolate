@@ -1,7 +1,7 @@
 {
   "name": "jss-isolate",
   "description": "True rules isolation through automatic properties reset.",
-  "version": "5.0.0-pre.2",
+  "version": "5.0.0",
   "author": {
     "name": "Maksim Koretskiy",
     "email": "mr.green.tv@gmail.com"
