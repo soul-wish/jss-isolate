@@ -151,7 +151,7 @@ jss.use(isolate({
 
 ## Reseted properties
 
-Here are all [inherited](./src/inherited.js) and all [non-inherited](./src/nonInherited.js) properties we reset.
+Here are all [inherited](https://github.com/iamstarkov/initize/blob/master/inherited.js) and all [non-inherited](https://github.com/iamstarkov/initize/blob/master/all.js) properties we reset.
 
 ## Issues
 
